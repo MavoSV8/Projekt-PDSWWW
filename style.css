@@ -38,10 +38,9 @@ html, body {
 }
 
 .hl-heading {
-    margin-left: 5%;
-    margin-right: 5%;
     font-size: 20px;
     width: 90%;
+    border-bottom: blue;
 }
 
 .break-line {
@@ -54,6 +53,13 @@ html, body {
 .main-text {
     font-family: Ubuntu;
     font-size: 16px;
+}
+
+.test-button {
+    width: 30%;
+    height: 200px;
+    min-height: 10vh;
+    max-height: 20vh;
 }
 
 @font-face {
