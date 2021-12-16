@@ -48,10 +48,9 @@ html, body {
 }
 
 .hl-heading {
-    margin-left: 5%;
-    margin-right: 5%;
     font-size: 20px;
     width: 90%;
+    border-bottom: blue;
 }
 
 .break-line {
@@ -64,6 +63,7 @@ html, body {
 .main-text {
     font-size: 16px;
 }
+
 
 #question{
     font-size: 16px;
@@ -79,11 +79,19 @@ html, body {
 
 }
 
-.form-check{
+.form-check {
     margin-left: 20px;
     font-size: 12px;
     color: black;
     text-align: left;
+}
+
+.test-button {
+    width: 30%;
+    height: 200px;
+    min-height: 10vh;
+    max-height: 20vh;
+
 }
 
 @font-face {
