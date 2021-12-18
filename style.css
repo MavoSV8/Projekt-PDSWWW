@@ -31,7 +31,7 @@ html, body {
 }
 .question-box {
     margin: 25px;
-    height: 250px;
+    height: auto;
     width: 90%;
     font-size: 2.5em;
     font-weight: bold;
@@ -92,6 +92,35 @@ html, body {
     min-height: 10vh;
     max-height: 20vh;
 
+}
+
+
+
+
+.add-remove-button {
+    width: 25px;
+    height: 25px;
+    font-weight: bold;
+    font-size: 12px;
+    float: right;
+}
+
+.add-question-button {
+    height: 25px;
+    font-weight: bold;
+    font-size: 12px;
+    float: left;
+}
+
+.edit-button {
+    height: 25px;
+    font-weight: bold;
+    font-size: 12px;
+    float: right;
+}
+
+.button-div{
+    margin: 0;
 }
 
 @font-face {
