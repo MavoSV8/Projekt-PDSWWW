@@ -1,0 +1,131 @@
+html, body {
+    height: 100%;
+    font-family: "Roboto Light", sans-serif;
+}
+
+.vh-80{
+    height: 80vh;
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
+#main {
+    /*width: 100%;*/
+    height: 100%;
+    min-height: 100%;
+
+}
+
+
+
+.box {
+    margin: 25px;
+    height: 400px;
+    width: 90%;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+}
+.question-box {
+    margin: 25px;
+    height: auto;
+    width: 90%;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.title-box {
+    margin: 25px;
+    min-height: 50px;
+    width: 60%;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.hl-heading {
+    font-size: 20px;
+    width: 90%;
+    border-bottom: blue;
+}
+
+.break-line {
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 2px;
+    width: 90%;
+}
+
+.main-text {
+    font-size: 16px;
+}
+
+
+#question{
+    font-size: 16px;
+    color: black;
+    text-align: left;
+
+}
+
+.question-name {
+    font-size: 17px;
+    color: black;
+    text-align: left;
+
+}
+
+.form-check {
+    margin-left: 20px;
+    font-size: 12px;
+    color: black;
+    text-align: left;
+}
+
+.test-button {
+    width: 30%;
+    height: 200px;
+    min-height: 10vh;
+    max-height: 20vh;
+
+}
+
+
+
+
+.add-remove-button {
+    width: 25px;
+    height: 25px;
+    font-weight: bold;
+    font-size: 12px;
+    float: right;
+}
+
+.add-question-button {
+    height: 25px;
+    font-weight: bold;
+    font-size: 12px;
+    float: left;
+}
+
+.edit-button {
+    height: 25px;
+    font-weight: bold;
+    font-size: 12px;
+    float: right;
+}
+
+.button-div{
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}

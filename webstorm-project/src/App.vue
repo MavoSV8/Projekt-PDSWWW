@@ -24,11 +24,8 @@ export default {
     LeftMenu,
     Main,
     Navbar
-    // Test
-  //   HelloWorld
   }
 }
-
 
 </script>
 
