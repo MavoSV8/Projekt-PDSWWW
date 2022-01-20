@@ -2,6 +2,7 @@
   <div> Left Menu
     <button v-on:click="submitView('Test')" >Test</button>
     <button v-on:click="submitView('AddTest')" >AddTest</button>
+    <button v-on:click="submitView('AdminPanel')" >AdminPanel</button>
   </div>
 </template>
 

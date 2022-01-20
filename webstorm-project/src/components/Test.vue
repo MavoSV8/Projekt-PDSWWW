@@ -1,34 +1,32 @@
 <template>
   <div>
-    <div class="row d-flex justify-content-center">
-      <div class="title-box bg-white text-dark">{{ test.title }}</div>
-      <div v-if="!submited" class="row d-flex text-dark justify-content-center">
-        <div id="question" class="text-dark">
-          <div class="question1 question-box box bg-white" v-for="(q, i) in test.questions" v-bind:key="i">
-            <div class="row">
-              <div class="hl-heading text-dark mt-5 mx-5">
-                <p class="d-flex align-items-center bg-light">Pytanie {{ i + 1 }}:</p>
-              </div>
-              <div class="question-name d-flex align-items-center text-dark mx-5">{{ q.msg }}
-              </div>
+    <Header :title="test.title"></Header>
+    <div v-if="!submited" class="row d-flex text-dark justify-content-center">
+      <div id="question" class="text-dark">
+        <div class="question1 question-box box bg-white" v-for="(q, i) in test.questions" v-bind:key="i">
+          <div class="row">
+            <div class="hl-heading text-dark mt-5 mx-5">
+              <p class="d-flex align-items-center bg-light">Pytanie {{ i + 1 }}:</p>
             </div>
-            <div class="row" v-for="(a, j) in q.answers" v-bind:key="j">
-              <div class="form-check mx-5 mt-1">
-                <input class="form-check-input" type="radio"
-                       v-bind:value="a"
-                       v-model="testResult.answers[i]">
-                <label class="form-check-label">{{ a }}
-                </label>
-              </div>
+            <div class="question-name d-flex align-items-center text-dark mx-5">{{ q.msg }}
+            </div>
+          </div>
+          <div class="row" v-for="(a, j) in q.answers" v-bind:key="j">
+            <div class="form-check mx-5 mt-1">
+              <input class="form-check-input" type="radio"
+                     v-bind:value="a"
+                     v-model="testResult.answers[i]">
+              <label class="form-check-label">{{ a }}
+              </label>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col text-center">
-            <button type="button" class="btn justify-content-center btn-primary btn-lg" v-on:click="submitTest()">
-              Wyślij
-            </button>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <button type="button" class="btn justify-content-center btn-primary btn-lg" v-on:click="submitTest()">
+            Wyślij
+          </button>
         </div>
       </div>
     </div>
@@ -46,9 +44,11 @@
 <script>
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Header from "@/components/Header";
 
 export default {
   name: "Test",
+  components: {Header},
   data() {
     return {
       title: "Test z dyn",
@@ -56,6 +56,7 @@ export default {
       test: {
         id: 0,
         title: "Test z dynamicznych stron www",
+        time: 1000,
         questions: [
           {
             msg: "Do czego odowłujemy się znakiem #?",
@@ -78,7 +79,7 @@ export default {
 
     }
   },
-  created () {
+  created() {
     console.log("A test should be loaded here!");
   },
   methods: {
@@ -99,12 +100,5 @@ export default {
 </script>
 
 <style scoped>
-.title-box {
-  margin: 25px;
-  min-height: 50px;
-  width: 60%;
-  font-size: 2.5em;
-  font-weight: bold;
-  text-align: center;
-}
+
 </style>
