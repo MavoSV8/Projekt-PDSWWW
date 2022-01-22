@@ -9,6 +9,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Test from "@/components/Test";
 import AddTest from "@/components/AddTest";
+import AdminPanel from "@/components/AdminPanel";
 
 
 export default {
@@ -33,6 +34,8 @@ export default {
         case 'Test':
           this.currentView = Test;
           break;
+        case 'AdminPanel':
+          this.currentView = AdminPanel;
       }
       this.update = "whatever";
     })
