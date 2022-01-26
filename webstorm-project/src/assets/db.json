@@ -1,0 +1,158 @@
+{
+  "testResult": [
+    {
+      "id": 1,
+      "testId": 0,
+      "answers": [
+        "asdasd",
+        ""
+      ],
+      "points": 1,
+      "maxPoints": 1
+    },
+    {
+      "id": 2,
+      "testId": 6,
+      "answers": [
+        "asdasd",
+        ""
+      ],
+      "points": 1,
+      "maxPoints": 1
+    }
+  ],
+  "tests": [
+    {
+      "id": 0,
+      "title": "Test z dynamicznych stron www",
+      "time": 1000,
+      "questions": [
+        {
+          "msg": "Do czego odowłujemy się znakiem #?",
+          "answers": [
+            "klasa",
+            "identyfikator",
+            "obiekt"
+          ],
+          "correct_answer": [
+            "identyfikator"
+          ]
+        },
+        {
+          "msg": "Dasz rade odpowiedziec na pytanie 2?",
+          "answers": [
+            "tak",
+            "nie"
+          ],
+          "correct_answer": [
+            "nie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Test 2 z WWW",
+      "time": 1000,
+      "questions": [
+        {
+          "msg": "Do czego odowłujemy się znakiem #?",
+          "answers": [
+            "klasa",
+            "identyfikator",
+            "obiekt"
+          ],
+          "correct_answer": [
+            "identyfikator"
+          ]
+        },
+        {
+          "msg": "Dasz rade odpowiedziec na pytanie 2?",
+          "answers": [
+            "tak",
+            "nie"
+          ],
+          "correct_answer": [
+            "nie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Test 3 z WWW",
+      "time": 1000,
+      "questions": [
+        {
+          "msg": "Do czego odowłujemy się znakiem #?",
+          "answers": [
+            "klasa",
+            "identyfikator",
+            "obiekt"
+          ],
+          "correct_answer": [
+            "identyfikator"
+          ]
+        },
+        {
+          "msg": "Dasz rade odpowiedziec na pytanie 2?",
+          "answers": [
+            "tak",
+            "nie"
+          ],
+          "correct_answer": [
+            "nie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "test",
+      "questions": [
+        {
+          "message": "pyt 1 -test",
+          "answers": [
+            "asd"
+          ],
+          "correct_answers": [
+            "asd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "adsasdasd",
+      "time": 3,
+      "questions": [
+        {
+          "msg": "pyt1",
+          "answers": [
+            "1"
+          ],
+          "correct_answer": [
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "sdfsdf",
+      "time": 2,
+      "questions": [
+        {
+          "msg": "111",
+          "answers": [
+            "asdasd",
+            "asdas"
+          ],
+          "correct_answer": [
+            "asdasd"
+          ]
+        }
+      ]
+    }
+  ]
+}

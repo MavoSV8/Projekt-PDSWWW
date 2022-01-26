@@ -57,7 +57,7 @@ export default {
     return {
       submitted : false,
       test: { // empty test, shall be filled with v-model
-        id: 0, // needs to be taken from db, first free
+        id: 0,
         title: "",
         time: 0,
         questions: [ NewQuestion ]
@@ -89,17 +89,17 @@ export default {
 
       outTest.id = this.test.id;
       outTest.title = this.test.title;
-      outTest.time = this.test.time;
+      outTest.time = parseInt(this.test.time);
       outTest.questions = [];
       for (const question of this.$refs['questions']) {
         let outQuestion = {};
-        if ( question.message.length === 0 ) {
+        if ( question.msg.length === 0 ) {
           window.alert("Występują puste pytania!")
           return;
         }
-        outQuestion.message = question.message;
+        outQuestion.msg = question.msg;
         outQuestion.answers = [];
-        outQuestion.correct_answers = [];
+        outQuestion.correct_answer = [];
         for (const answer of question.$refs['answers']) {
           if ( answer.msg.length === 0 ) {
             window.alert("Występują puste odpowiedzi dla któregoś z pytań!")
@@ -107,9 +107,9 @@ export default {
           }
           outQuestion.answers.push(answer.msg);
           if (answer.correct) {
-            outQuestion.correct_answers.push(answer.msg);
+            outQuestion.correct_answer.push(answer.msg);
           }
-          if ( outQuestion.correct_answers.length === 0 ) {
+          if ( outQuestion.correct_answer.length === 0 ) {
             window.alert("Brak poprawnych odpowiedzi dla któregoś z pytań! Jak tu zdać :)?")
             return;
           }
@@ -117,7 +117,12 @@ export default {
         outTest.questions.push(outQuestion);
       }
       console.log(outTest);
-      // send to database
+
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("POST", "http://localhost:3000/tests",false);
+      xmlHttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+      xmlHttp.send(JSON.stringify(outTest));
+      console.log(JSON.stringify(outTest));
       this.submitted = true
     },
   },

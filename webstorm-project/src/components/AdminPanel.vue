@@ -25,73 +25,30 @@ import Header from "@/components/Header";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+
 export default {
   name: "AdminPanel",
   components: {Header},
   data() {
     return {
-      id: 0,
-      tests: [
-        {
-          id: 0,
-          title: "Test z dynamicznych stron www",
-          time: 1000,
-          questions: [
-            {
-              msg: "Do czego odowłujemy się znakiem #?",
-              answers: ["klasa", "identyfikator", "obiekt"],
-              correct_answer: ["identyfikator"],
-            },
-            {
-              msg: "Dasz rade odpowiedziec na pytanie 2?",
-              answers: ["tak", "nie"],
-              correct_answer: ["nie"],
-            }
-          ]
-        },
-        {
-          id: 2,
-          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore " +
-              "et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut" +
-              "aliquip ex ea commodo consequat.",
-          time: 1000,
-          questions: [
-            {
-              msg: "Do czego odowłujemy się znakiem #?",
-              answers: ["klasa", "identyfikator", "obiekt"],
-              correct_answer: ["identyfikator"],
-            },
-            {
-              msg: "Dasz rade odpowiedziec na pytanie 2?",
-              answers: ["tak", "nie"],
-              correct_answer: ["nie"],
-            }
-          ]
-        },
-        {
-          id: 3,
-          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore " +
-              "et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut" +
-              "aliquip ex ea commodo consequat.",
-          time: 1000,
-          questions: [
-            {
-              msg: "Do czego odowłujemy się znakiem #?",
-              answers: ["klasa", "identyfikator", "obiekt"],
-              correct_answer: ["identyfikator"],
-            },
-            {
-              msg: "Dasz rade odpowiedziec na pytanie 2?",
-              answers: ["tak", "nie"],
-              correct_answer: ["nie"],
-            }
-          ]
-        }
+      tests:[]
+    };
 
-      ]
-    }
+  },
+  created() {
+    this.getTests();
   },
   methods: {
+    getTests(){
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("GET", "http://localhost:3000/tests",false);
+      xmlHttp.send(null);
+      console.log(xmlHttp.responseText)
+      //var testsObject = { tests: [JSON.parse(xmlHttp.responseText)] }
+      this.tests = JSON.parse(xmlHttp.responseText)
+
+    },
+
     submitView(view) {
       this.$root.$emit('changeView', view)
     }

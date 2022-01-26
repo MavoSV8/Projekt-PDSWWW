@@ -54,46 +54,52 @@ export default {
       title: "Test z dyn",
       submited: false,
       test: {
-        id: 0,
-        title: "Test z dynamicznych stron www",
-        time: 1000,
-        questions: [
-          {
-            msg: "Do czego odowłujemy się znakiem #?",
-            answers: ["klasa", "identyfikator", "obiekt"],
-            correct_answer: ["identyfikator"],
-          },
-          {
-            msg: "Dasz rade odpowiedziec na pytanie 2?",
-            answers: ["tak", "nie"],
-            correct_answer: ["nie"],
-          }
-        ]
       },
       testResult: {
+        id: 0,
         testId: 0,
         answers: ["", ""],
         points: 0,
         maxPoints: 0
       }
-
     }
   },
   created() {
     console.log("A test should be loaded here!");
+    this.getTest(6);
   },
   methods: {
+
+    getTest(testID){
+
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("GET", "http://localhost:3000/tests/"+ testID,false);
+      xmlHttp.send(null);
+      console.log(xmlHttp.responseText)
+      //var testsObject = { tests: [JSON.parse(xmlHttp.responseText)] }
+      this.test = JSON.parse(xmlHttp.responseText)
+
+    },
     submitTest() {
       console.log("Test submited");
       this.testResult.maxPoints = this.test.questions.length
+      console.log("Tu 1");
       for (let i = 0; i < this.test.questions.length; i++) {
+        console.log("Tu" + i);
         if (this.testResult.answers[i] === this.test.questions[i].correct_answer[0]) {
           this.testResult.points++;
         }
+
       }
+      this.testResult.testId = this.test.id;
+      //var results = [this.testResult]
       console.log(this.testResult.answers)
       this.submited = true;
-      //  send to databse here
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("POST", "http://localhost:3000/testResult",false);
+      xmlHttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+      xmlHttp.send(JSON.stringify(this.testResult));
+      console.log(JSON.stringify(this.testResult));
     }
   }
 }

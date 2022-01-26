@@ -13,7 +13,7 @@
         <div>Treść pytania</div>
         <div class="row mx-5">
           <input type="text" class="form-control" placeholder="Wpisz pytanie..."
-                 v-model="message">
+                 v-model="msg">
         </div>
         <component
             v-for="(component, index) in answers"
@@ -35,7 +35,7 @@ export default {
   props: ['questionNum'],
   data() {
     return {
-      message: "",
+      msg: "",
       answers: [Answer]
     }
   },
