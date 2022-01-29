@@ -35,6 +35,7 @@ export default {
   props: ['questionNum'],
   data() {
     return {
+      temp: [],
       msg: "",
       answers: [Answer]
     }
@@ -54,7 +55,33 @@ export default {
         this.answers.splice(msg - 1, 1);
       }
     })
-  }
+
+    // let size = this.temp.length;
+    // console.log("size = " + size)
+  },
+  beforeUpdate() {
+    console.log(this.msg)
+    console.log(this.temp)
+    let size = this.temp.length;
+    console.log("size = " + size)
+    // console.log("size.msg = " + th/**/is.temp[0])
+    // console.log("size = " + this.temp)
+
+    for (let j = 0; j < size - 1; j++) {
+      this.addAnswer();
+      console.log("adding asnwer")
+      // this.answers[j].msg = this.temp[j].msg
+    }
+    console.log("answers 2 size = " + this.answers.length)
+    let i = 0;
+    // console.log("size of answers = " + (this.$refs['answers'].length))
+    for(const answer of this.$refs['answers']){
+      answer.msg = this.temp[i]
+      console.log("temp = " + this.temp[i])
+      i++;
+    }
+
+  },
 }
 </script>
 

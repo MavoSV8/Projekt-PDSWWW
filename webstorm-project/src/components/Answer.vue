@@ -21,6 +21,7 @@ export default {
   props: [ 'number'],
   data() {
     return {
+      temp: "",
       msg : "",
       correct : false
     }
@@ -28,6 +29,9 @@ export default {
   methods : {
     removeAnswer(id) {
         this.$root.$emit('deleteAnswer', id);
+    },
+    beforeUpdate() {
+      console.log("answers, anwer.msg temp = " + this.msg)
     }
   }
 }

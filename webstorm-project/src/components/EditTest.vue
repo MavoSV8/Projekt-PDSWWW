@@ -57,7 +57,7 @@ export default {
   name: "AddTest",
   data() {
     return {
-      // temp: "",
+      temp: "",
       submitted: false,
       test: { // empty test, shall be filled with v-model
         id: 0,
@@ -139,35 +139,20 @@ export default {
         // does not work correctly, I've got no idea whether is is fixable
       }
     })
-    console.log("testid = " + this.$root.testId)
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "http://localhost:3000/tests/" + this.$root.testId, false);
-    xmlHttp.send(null);
-    console.log(xmlHttp.responseText)
-    let temp = JSON.parse(xmlHttp.responseText)
-    // temp.test.questions.forEach(this.addQuestion())
-
-    // let size = temp.questions.length;
-    // // console.log("size = " + size )
-    // for (let j = 0; j < size+1; j++){
-    //   this.addQuestion();
-    // }
+    // console.log("testid = " + this.$root.testId)
+    // var xmlHttp = new XMLHttpRequest();
+    // xmlHttp.open("GET", "http://localhost:3000/tests/" + this.$root.testId, false);
+    // xmlHttp.send(null);
+    // console.log(xmlHttp.responseText)
+    // let temp = JSON.parse(xmlHttp.responseText)
 
     let i = 0;
     for (const question of this.$refs['questions']) {
       // question.this.addQuestion()
-      question.msg = temp.questions[i].msg
+      question.msg = this.temp.questions[i].msg
+      question.temp = this.temp.questions[i].answers
+      console.log("question.temp = " + question.temp.length)
       i++;
-
-      // for (const answer of question.$refs['answers']) {
-      // outQuestion.answers.push(answer.msg);
-      // if (answer.correct) {
-      //   outQuestion.correct_answer.push(answer.msg);
-      // }
-      // if ( outQuestion.correct_answer.length === 0 ) {
-      //   window.alert("Brak poprawnych odpowiedzi dla któregoś z pytań! Jak tu zdać :)?")
-      //   return;
-      // }
     }
   }, created() {
 
@@ -176,8 +161,10 @@ export default {
     xmlHttp.open("GET", "http://localhost:3000/tests/" + this.$root.testId, false);
     xmlHttp.send(null);
     console.log(xmlHttp.responseText)
-    let temp = JSON.parse(xmlHttp.responseText)
-    let size = temp.questions.length;
+    this.temp = JSON.parse(xmlHttp.responseText)
+    let size = this.temp.questions.length;
+    this.test.title = this.temp.title
+    this.test.time = this.temp.time
     for (let j = 0; j < size - 1; j++) {
       this.addQuestion();
     }
