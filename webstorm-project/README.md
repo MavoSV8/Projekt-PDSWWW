@@ -20,5 +20,12 @@ npm run build
 npm run lint
 ```
 
+### JSON server
+```
+npm install -g json-server
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+json-server --watch .\src\assets\db.json
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
