@@ -122,7 +122,11 @@ export default {
       console.log(outTest);
 
       var xmlHttp = new XMLHttpRequest();
-      xmlHttp.open("PUT", "http://localhost:3000/tests/"+this.test.id, false);
+      if (this.test.id > 0) {
+        xmlHttp.open("PUT", "http://localhost:3000/tests/" + this.test.id, false);
+      } else {
+        xmlHttp.open("POST", "http://localhost:3000/tests", false);
+      }
       xmlHttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
       xmlHttp.send(JSON.stringify(outTest));
       console.log(JSON.stringify(outTest));
