@@ -127,10 +127,11 @@ export default {
           if (answer.correct) {
             outQuestion.correct_answer.push(answer.msg);
           }
-          if (outQuestion.correct_answer.length === 0) {
-            window.alert("Brak poprawnych odpowiedzi dla któregoś z pytań! Jak tu zdać :)?")
-            return;
-          }
+
+        }
+        if (outQuestion.correct_answer.length === 0) {
+          window.alert("Brak poprawnych odpowiedzi dla któregoś z pytań! Jak tu zdać :)?")
+          return;
         }
         outTest.questions.push(outQuestion);
       }
