@@ -4,10 +4,10 @@
       <div class="question1 question-box box bg-white">
         <div class="row">
           <div class="hl-heading text-dark mt-5 mx-5">
-            <p class="d-flex align-items-center bg-light">Pytanie {{ questionNum +1 }}:</p>
+            <p class="d-flex align-items-center bg-light">Pytanie {{ questionNum + 1 }}:</p>
           </div>
           <div class="align-items-center">
-          <button class="btn btn-primary btn-sm col-2  " v-on:click="removeQuestion()">Usuń pytanie</button>
+            <button class="btn btn-primary btn-sm col-2  " v-on:click="removeQuestion()">Usuń pytanie</button>
           </div>
         </div>
         <div>Treść pytania</div>
@@ -35,6 +35,8 @@ export default {
   props: ['questionNum'],
   data() {
     return {
+      flag: false,
+      cnt: 0,
       temp: [],
       msg: "",
       answers: [Answer]
@@ -42,8 +44,20 @@ export default {
   },
   methods: {
     addAnswer() {
+      // console.log("addnswer thing")
       this.answers.push(Answer)
     },
+    // addAnswer2() {
+    //   // console.log("addnswer thing")
+    //   this.addAnswer()
+    //   console.log("kokos1234")
+    //   let i = 0;
+    //     for (const answer of this.$refs['answers']) {
+    //       answer.msg = this.temp[i]
+    //       console.log("temp = " + this.temp[i])
+    //       i++;
+    //     }
+    // },
     removeQuestion() {
       this.$root.$emit('deleteQuestion', this.questionNum);
     },
@@ -60,28 +74,36 @@ export default {
     // console.log("size = " + size)
   },
   beforeUpdate() {
-    console.log(this.msg)
-    console.log(this.temp)
-    let size = this.temp.length;
-    console.log("size = " + size)
-    // console.log("size.msg = " + th/**/is.temp[0])
-    // console.log("size = " + this.temp)
+    console.log("beforeupdate thing")
 
-    for (let j = 0; j < size - 1; j++) {
-      this.addAnswer();
-      console.log("adding asnwer")
-      // this.answers[j].msg = this.temp[j].msg
-    }
-    console.log("answers 2 size = " + this.answers.length)
-    let i = 0;
-    // console.log("size of answers = " + (this.$refs['answers'].length))
-    for(const answer of this.$refs['answers']){
-      answer.msg = this.temp[i]
-      console.log("temp = " + this.temp[i])
-      i++;
-    }
+    // if (this.temp !== "") {
+    if (!this.flag) {
+      let size = this.temp.length;
+      console.log("size = " + size)
 
-  },
+      for (let j = 0; j < size - 1; j++) {
+        this.addAnswer();
+        // this.addAnswer2();
+        console.log("adding asnwer")
+        // this.answers[j].msg = this.temp[j].msg
+      }
+      // this.temp.length = 0
+      this.flag = true
+    }
+    if (this.cnt < 2) {
+
+      console.log("answers 2 size = " + this.answers.length)
+      let i = 0;
+      for (const answer of this.$refs['answers']) {
+        answer.msg = this.temp[i]
+        console.log("temp = " + this.temp[i])
+        i++;
+      }
+      this.cnt++
+    }
+  }
+  // this.temp.length = 0
+  // },
 }
 </script>
 

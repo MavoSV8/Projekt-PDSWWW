@@ -124,7 +124,8 @@ export default {
       console.log(outTest);
 
       var xmlHttp = new XMLHttpRequest();
-      xmlHttp.open("POST", "http://localhost:3000/tests", false);
+      xmlHttp.open("PUT", "http://localhost:3000/tests/"+this.test.id, false);
+      // xmlHttp.open("POST", "http://localhost:3000/tests", false);
       xmlHttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
       xmlHttp.send(JSON.stringify(outTest));
       console.log(JSON.stringify(outTest));
@@ -165,6 +166,7 @@ export default {
     let size = this.temp.questions.length;
     this.test.title = this.temp.title
     this.test.time = this.temp.time
+    this.test.id = this.temp.id
     for (let j = 0; j < size - 1; j++) {
       this.addQuestion();
     }

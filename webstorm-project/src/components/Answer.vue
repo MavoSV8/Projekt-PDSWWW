@@ -31,7 +31,8 @@ export default {
         this.$root.$emit('deleteAnswer', id);
     },
     beforeUpdate() {
-      console.log("answers, anwer.msg temp = " + this.msg)
+      console.log("answers, anwer.msg temp = " + this.temp)
+      this.msg = this.temp
     }
   }
 }
