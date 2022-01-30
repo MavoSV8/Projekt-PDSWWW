@@ -6,7 +6,7 @@
         <div class="row justify-content-center align-items-center m-2">
           <button v-for="(test, i) in tests" v-bind:key="i"
                   class="btn btn-outline-light text-dark test-button m-2 overflow-hidden border"
-                  v-on:click="submitView('test-id-' + test.id)">
+                  v-on:click="submitView(test.id)">
             {{ test.title }}
           </button>
         </div>
@@ -50,7 +50,8 @@ export default {
     },
 
     submitView(view) {
-      this.$root.$emit('changeView', view)
+      this.$root.testId = view
+      this.$root.$emit('changeView', 'EditTest')
     }
   }
 }

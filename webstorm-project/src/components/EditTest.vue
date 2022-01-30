@@ -25,11 +25,13 @@
         </div>
 
         <div class="row">
+          <!--          <div v-for="(ind) in test.questions">-->
           <component
               v-for="(question, index) in test.questions"
               :key="index"
-              :is="question" :questionNum="index"
+              :is="question" :questionNum="index" :msgs="test.questions[index].msg"
               ref="questions"/>
+          <!--          </div>-->
         </div>
         <div class="col-10  float-sm-end">
           <div class=" p-2 mt-3 float-sm-start">
@@ -55,7 +57,6 @@ export default {
   name: "AddTest",
   data() {
     return {
-      jsonLoaded: false,
       temp: "",
       submitted: false,
       test: { // empty test, shall be filled with v-model
@@ -68,27 +69,10 @@ export default {
   },
   components: {NewQuestion, Header},
   methods: {
-
     loadJson(e) {
-      let files = e.target.files || e.dataTransfer.files;
-      const reader = new FileReader();
-
-      reader.addEventListener("load", () => {
-        console.log(reader.result);
-        this.temp = JSON.parse(reader.result);
-        let size = this.temp.questions.length;
-        this.test.title = this.temp.title;
-        this.test.time = this.temp.time;
-        this.test.id = this.temp.id;
-        for (let j = 0; j < size - 1; j++) {
-          this.addQuestion();
-        }
-        this.jsonLoaded = true;
-      }, false);
-      reader.readAsText(files[0]);
-
-
-
+      // TBD - not implemented
+      var files = e.target.files || e.dataTransfer.files;
+      console.log("AddTest: loadJson" + files[0]);
     },
     addQuestion() {
       console.log("AddTest: adding question")
@@ -109,6 +93,7 @@ export default {
       outTest.title = this.test.title;
       outTest.time = parseInt(this.test.time);
       outTest.questions = [];
+
       for (const question of this.$refs['questions']) {
         let outQuestion = {};
         if (question.msg.length === 0) {
@@ -136,17 +121,17 @@ export default {
       }
       console.log(outTest);
 
-      this.sendTest(outTest);
-      this.submitted = true;
-    },
-    sendTest(testToSend){
       var xmlHttp = new XMLHttpRequest();
-      xmlHttp.open("POST", "http://localhost:3000/tests", false);
+      if (this.test.id > 0) {
+        xmlHttp.open("PUT", "http://localhost:3000/tests/" + this.test.id, false);
+      } else {
+        xmlHttp.open("POST", "http://localhost:3000/tests", false);
+      }
       xmlHttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-      xmlHttp.send(JSON.stringify(testToSend));
-      console.log(JSON.stringify(testToSend));
-
-    }
+      xmlHttp.send(JSON.stringify(outTest));
+      console.log(JSON.stringify(outTest));
+      this.submitted = true
+    },
   },
   mounted() {
     this.$root.$on('deleteQuestion', (index) => {
@@ -156,15 +141,24 @@ export default {
         // does not work correctly, I've got no idea whether is is fixable
       }
     })
-  },
-  updated() {
-    if(this.jsonLoaded){
-      let i = 0;
-      for (const question of this.$refs['questions']) {
-        question.msg = this.temp.questions[i].msg
-        question.temp = this.temp.questions[i].answers
-        i++;
-      }
+    let i = 0;
+    for (const question of this.$refs['questions']) {
+      question.msg = this.temp.questions[i].msg
+      question.temp = this.temp.questions[i].answers
+      i++;
+    }
+  }, created() {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", "http://localhost:3000/tests/" + this.$root.testId, false);
+    xmlHttp.send(null);
+    // console.log(xmlHttp.responseText)
+    this.temp = JSON.parse(xmlHttp.responseText)
+    let size = this.temp.questions.length;
+    this.test.title = this.temp.title
+    this.test.time = this.temp.time
+    this.test.id = this.temp.id
+    for (let j = 0; j < size - 1; j++) {
+      this.addQuestion();
     }
   }
 }

@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Test from "@/components/Test";
 import AddTest from "@/components/AddTest";
 import AdminPanel from "@/components/AdminPanel";
+import EditTest from "@/components/EditTest";
 
 
 export default {
@@ -22,7 +23,8 @@ export default {
   name: 'Main',
   components: {
     AddTest,
-    Test
+    Test,
+    EditTest
   },
   mounted() {
     this.$root.$on('changeView', (msg) => {
@@ -33,6 +35,9 @@ export default {
           break;
         case 'Test':
           this.currentView = Test;
+          break;
+        case 'EditTest':
+          this.currentView = EditTest;
           break;
         case 'AdminPanel':
           this.currentView = AdminPanel;

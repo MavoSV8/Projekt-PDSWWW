@@ -4,10 +4,10 @@
       <div class="question1 question-box box bg-white">
         <div class="row">
           <div class="hl-heading text-dark mt-5 mx-5">
-            <p class="d-flex align-items-center bg-light">Pytanie {{ questionNum +1 }}:</p>
+            <p class="d-flex align-items-center bg-light">Pytanie {{ questionNum + 1 }}:</p>
           </div>
           <div class="align-items-center">
-          <button class="btn btn-primary btn-sm col-2  " v-on:click="removeQuestion()">Usuń pytanie</button>
+            <button class="btn btn-primary btn-sm col-2  " v-on:click="removeQuestion()">Usuń pytanie</button>
           </div>
         </div>
         <div>Treść pytania</div>
@@ -35,6 +35,9 @@ export default {
   props: ['questionNum'],
   data() {
     return {
+      flag: false,
+      cnt: 0,
+      temp: [],
       msg: "",
       answers: [Answer]
     }
@@ -54,6 +57,24 @@ export default {
         this.answers.splice(msg - 1, 1);
       }
     })
+  },
+  beforeUpdate() {
+    console.log("beforeupdate thing")
+    if (!this.flag) {
+      let size = this.temp.length;
+      for (let j = 0; j < size - 1; j++) {
+        this.addAnswer();
+      }
+      this.flag = true
+    }
+    if (this.cnt < 2) {
+      let i = 0;
+      for (const answer of this.$refs['answers']) {
+        answer.msg = this.temp[i]
+        i++;
+      }
+      this.cnt++
+    }
   }
 }
 </script>
