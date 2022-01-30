@@ -69,8 +69,6 @@ export default {
 
     loadJson(e) {
       let files = e.target.files || e.dataTransfer.files;
-
-
       const reader = new FileReader();
 
       reader.addEventListener("load", () => {
@@ -86,8 +84,6 @@ export default {
           NewQuestion.data().answers = entry.answers;
         })
         this.$forceUpdate();
-        //this.sendTest(this.test);
-        //console.log(this.id + ' ' + this.title + ' ' + this.time + ' ' + this.questions);
       }, false);
       reader.readAsText(files[0]);
 
@@ -109,7 +105,6 @@ export default {
         window.alert("Podaj nazwę testu!")
         return;
       }
-
       outTest.id = this.test.id;
       outTest.title = this.test.title;
       outTest.time = parseInt(this.test.time);
