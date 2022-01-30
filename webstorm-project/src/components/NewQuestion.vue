@@ -58,7 +58,7 @@ export default {
       }
     })
   },
-  beforeUpdate() {
+  updated() {
     console.log("beforeupdate thing")
     if (!this.flag) {
       let size = this.temp.length;
