@@ -89,12 +89,10 @@ export default {
         window.alert("Podaj nazwę testu!")
         return;
       }
-
       outTest.id = this.test.id;
       outTest.title = this.test.title;
       outTest.time = parseInt(this.test.time);
       outTest.questions = [];
-
 
       for (const question of this.$refs['questions']) {
         let outQuestion = {};
@@ -125,7 +123,6 @@ export default {
 
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.open("PUT", "http://localhost:3000/tests/"+this.test.id, false);
-      // xmlHttp.open("POST", "http://localhost:3000/tests", false);
       xmlHttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
       xmlHttp.send(JSON.stringify(outTest));
       console.log(JSON.stringify(outTest));
@@ -140,28 +137,17 @@ export default {
         // does not work correctly, I've got no idea whether is is fixable
       }
     })
-    // console.log("testid = " + this.$root.testId)
-    // var xmlHttp = new XMLHttpRequest();
-    // xmlHttp.open("GET", "http://localhost:3000/tests/" + this.$root.testId, false);
-    // xmlHttp.send(null);
-    // console.log(xmlHttp.responseText)
-    // let temp = JSON.parse(xmlHttp.responseText)
-
     let i = 0;
     for (const question of this.$refs['questions']) {
-      // question.this.addQuestion()
       question.msg = this.temp.questions[i].msg
       question.temp = this.temp.questions[i].answers
-      console.log("question.temp = " + question.temp.length)
       i++;
     }
   }, created() {
-
-    console.log("testid = " + this.$root.testId)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", "http://localhost:3000/tests/" + this.$root.testId, false);
     xmlHttp.send(null);
-    console.log(xmlHttp.responseText)
+    // console.log(xmlHttp.responseText)
     this.temp = JSON.parse(xmlHttp.responseText)
     let size = this.temp.questions.length;
     this.test.title = this.temp.title
