@@ -55,6 +55,8 @@ export default {
   name: "AddTest",
   data() {
     return {
+      jsonLoaded: false,
+      temp: "",
       submitted: false,
       test: { // empty test, shall be filled with v-model
         id: 0,
@@ -73,17 +75,15 @@ export default {
 
       reader.addEventListener("load", () => {
         console.log(reader.result);
-        let filesJson;
-        filesJson = JSON.parse(reader.result);
-        this.test.id = filesJson.id;
-        this.test.title = filesJson.title;
-        this.test.time = filesJson.time;
-        //this.test.questions = filesJson.questions;
-        filesJson.questions.forEach(entry => {
-          NewQuestion.data().msg = entry.msg;
-          NewQuestion.data().answers = entry.answers;
-        })
-        this.$forceUpdate();
+        this.temp = JSON.parse(reader.result);
+        let size = this.temp.questions.length;
+        this.test.title = this.temp.title;
+        this.test.time = this.temp.time;
+        this.test.id = this.temp.id;
+        for (let j = 0; j < size - 1; j++) {
+          this.addQuestion();
+        }
+        this.jsonLoaded = true;
       }, false);
       reader.readAsText(files[0]);
 
@@ -156,6 +156,16 @@ export default {
         // does not work correctly, I've got no idea whether is is fixable
       }
     })
+  },
+  updated() {
+    if(this.jsonLoaded){
+      let i = 0;
+      for (const question of this.$refs['questions']) {
+        question.msg = this.temp.questions[i].msg
+        question.temp = this.temp.questions[i].answers
+        i++;
+      }
+    }
   }
 }
 </script>
